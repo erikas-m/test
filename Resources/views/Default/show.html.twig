@@ -1,0 +1,23 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block content %}
+    <article class="articles">
+    <div class="row">
+        <div class="col-md-10">
+            <h2>#{{ issue.number }}: {{ issue.title }}</h2>
+            <h4>{{ issue.body }}</h3>
+            <span>-</span>
+            <h5>State: {{ issue.state }}</h5>
+            <a href="{{ path("issue_edit", {user: user, repo: repo, num: issue.number}) }}" class="btn btn-primary pull-right">Edit</a>
+            <a href="{{ issue.html_url }}">View on Github</a>
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <img src="{{ issue.user.avatar_url }}">
+                <div class="caption">
+                    <h4><a href="{{ issue.user.html_url}}">{{ issue.user.login }}</a></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    </article>
+{% endblock %}

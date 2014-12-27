@@ -1,0 +1,18 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block navLinks %}
+{% endblock %}
+{% block content %}
+    <div class="user-select align-center">
+        <h2>Select user:</h2>
+        {% if users is empty %}
+            <h3>No users found.</h3>
+        {% else %}
+        <div class="list-group">
+            {%  for user in users %}
+            <a href="{{ path("demo_select_repo", { user: user.login }) }}" class="list-group-item">{{ user.login }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <input type="button" class="btn btn-primary btn-wide btn-lg" value="Back" onClick="history.go(-1);return true;">
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block content %}
+
+    {% if issues is empty %}
+    <h3>No issues found.</h3>
+    {% else %}
+    <h3>Issues found:</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+        {%  for issue in issues %}
+        <tr>
+            <td><a href="{{ path("issue_show", { user: user, repo: repo, num: issue.number }) }}">{{ issue.number }}</a></td>
+            <td><a href="{{ path("issue_show", { user: user, repo: repo, num: issue.number }) }}">{{ issue.title }}</a></td>
+            <td>{{ issue.user }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

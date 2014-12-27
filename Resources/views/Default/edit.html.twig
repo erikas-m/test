@@ -1,0 +1,46 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block content %}
+<article class="articles">
+    <form  method="post" action="{{ path("issue_update", { user: user, repo: repo, num: issue.number }) }}">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">#{{ issue.number }}:</span>
+                    <input type="text" class="form-control" name="title" value="{{ issue.title }}" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <textarea name="body" class="form-control" rows="3">{{ issue.body }}</textarea>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">State:</span>
+                    <select class="form-control" name="status">
+                        <option value="{{ issue.state }}">{{ issue.state }}</option>
+                        {% if issue.state == "open" %}
+                            <option value="closed">closed</option>
+                        {% else %}
+                            <option value="open">Open</option>
+                        {% endif %}
+                    </select>
+                    <span class="input-group-addon">Password for user "{{ issue.user.login }}"</span>
+                    <input type="text" class="hidden" name="login" required value="{{ issue.user.login }}">
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary pull-right" name="create">Save</button>
+                {% if error == "fail" %}
+                    <span class="text-danger text-center"><h3>Wrong password for user "{{ issue.user.login }}"</h3></span>
+                {% endif %}
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="{{ issue.user.avatar_url }}">
+                    <div class="caption">
+                        <h4><a href="{{ issue.user.html_url}}">{{ issue.user.login }}</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</article>
+{% endblock %}

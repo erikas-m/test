@@ -1,0 +1,17 @@
+homepage:
+    path:  /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'IssueBundle:Default:demoSearchUser.html.twig'
+
+demo_select_user:
+    path: /select
+    defaults: { _controller: IssueBundle:Demo:selectUser }
+
+demo_select_repo:
+    path: /select/{user}
+    defaults: { _controller: IssueBundle:Demo:selectRepo }
+
+repo_routing:
+    resource: "repoRouting.yml"
+    prefix: /{user}/{repo}

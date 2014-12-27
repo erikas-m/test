@@ -1,0 +1,44 @@
+demo_issue_index:
+    path:     /
+    defaults: {_controller:  IssueBundle:Demo:index }
+
+issue_find_all:
+    path: /findall
+    defaults: { _controller: IssueBundle:Default:findAll }
+
+issue_find_page:
+    path: /find
+    defaults: { _controller: IssueBundle:Default:find }
+
+issue_find:
+    path: /find/result
+    defaults: { _controller: IssueBundle:Default:search }
+
+issue_create:
+    path: /create/{error}
+    defaults: { _controller: IssueBundle:Default:create, error: "none" }
+    requirements:
+        error: "^fail$"
+
+issue_add:
+    path: /add
+    defaults: { _controller: IssueBundle:Default:add }
+
+issue_update:
+    path: /update/{num}
+    defaults: { _controller: IssueBundle:Default:update }
+    requirements:
+        num: "^\d+$"
+
+issue_show:
+    path: /show/{num}
+    defaults: { _controller: IssueBundle:Default:show }
+    requirements:
+        num: "^\d+$"
+
+issue_edit:
+    path: /edit/{num}/{error}
+    defaults: { _controller: IssueBundle:Default:edit, error: "none" }
+    requirements:
+        num: "^\d+$"
+        error: "^fail$"

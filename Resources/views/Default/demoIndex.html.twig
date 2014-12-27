@@ -1,0 +1,12 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block content %}
+<div class="jumbotron">
+    <h1>Welcome to simple Github issues CRUD interface demo!! </h1>
+    <p>Please select action:</p>
+    <p>
+        <a class="btn btn-primary btn-lg" href="{{ path('issue_find_all', { user: user, repo: repo }) }}" role="button">List all selected repository issues</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('issue_find_page', { user: user, repo: repo }) }}" role="button">Search for issues in selected repository</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('issue_create', { user: user, repo: repo }) }}" role="button">Create new issue</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block navLinks %}
+{% endblock %}
+{% block content %}
+    <div class="user-select align-center">
+        <h2>Select repository:</h2>
+        {% if repos is empty %}
+            <h3>No repositories found.</h3>
+        {% else %}
+        <div class="list-group">
+            {%  for repo in repos %}
+            <a href="{{ path("demo_issue_index", {user: user, repo: repo.name}) }}" class="list-group-item">{{ repo.name }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <input type="button" class="btn btn-primary btn-wide btn-lg" value="Back" onClick="history.go(-1);return true;">
+    </div>
+{% endblock %}

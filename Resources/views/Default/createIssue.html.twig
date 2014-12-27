@@ -1,0 +1,28 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block navLinks %}
+    <li><a href="{{ path('issue_find_all', { user: user, repo: repo }) }}">List all</a></li>
+    <li><a href="{{ path('issue_find_page', { user: user, repo: repo }) }}">Search</a></li>
+    <li class="active"><a href="{{ path('issue_create', { user: user, repo: repo }) }}">Create</a></li>
+{% endblock %}
+{% block content %}
+    <div class="form-container">
+        <form  class="align-center half-wide" method="post" action="{{ path("issue_add", { user: user, repo: repo }) }}">
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" name="login" class="form-control" placeholder="Your git username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control input-lg" name="password" class="form-control" placeholder="Your git password" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" name="title" class="form-control" placeholder="Issue title" required>
+            </div>
+            <div class="form-group">
+                <textarea name="body" class="form-control input-lg" rows="3" placeholder="Issue message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-wide btn-lg" name="create">Create</button>
+            {% if error == "fail" %}
+                <span class="text-danger"><h3>Username and password doesn't match.</h3></span>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block navLinks %}
+    <li class="active"><a href="{{ path('issue_find_all', { user: user, repo: repo }) }}">List all</a></li>
+    <li><a href="{{ path('issue_find_page', { user: user, repo: repo }) }}">Search</a></li>
+    <li><a href="{{ path('issue_create', { user: user, repo: repo }) }}">Create</a></li>
+{% endblock %}
+{% block content %}
+    {% if issues is empty %}
+    <h3>No issues found.</h3>
+    {% else %}
+    <h3>Issues found:</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+        {%  for issue in issues %}
+        <tr>
+            <td><a href="{{ path("issue_show", { user: user, repo: repo, num: issue.number }) }}">{{ issue.number }}</a></td>
+            <td><a href="{{ path("issue_show", { user: user, repo: repo, num: issue.number }) }}">{{ issue.title }}</a></td>
+            <td><a href="{{ issue.user.html_url}}">{{ issue.user.login }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

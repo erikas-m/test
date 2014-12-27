@@ -1,0 +1,14 @@
+{% extends "IssueBundle::layout.html.twig" %}
+{% block navLinks %}
+{% endblock %}
+{% block content %}
+    <div class="form-container">
+        <form id="form-search" class="align-center" method="post" action="{{ path("demo_select_user") }}">
+            <h2>Choose repository owner</h2>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" name="user" class="form-control" placeholder="Git username" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-wide btn-lg" name="search" value="search">Search</button>
+        </form>
+    </div>
+{% endblock %}
