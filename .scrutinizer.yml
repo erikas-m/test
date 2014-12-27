@@ -1,0 +1,15 @@
+application:
+    environment:
+        php:
+            version: 5.5
+
+before_commands:
+    - "composer update --prefer-source"
+tools:
+    external_code_coverage:
+        enabled: true
+        timeout: 3600
+    php_analyzer:
+        config:
+            metrics_lack_of_cohesion_methods:
+                enabled:  true

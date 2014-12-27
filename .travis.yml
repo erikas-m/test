@@ -1,0 +1,21 @@
+language: php
+
+php:
+    - 5.5
+
+before_install:
+    - sudo chmod 0777 -R app/logs/ app/cache/
+
+install:
+    - composer install -n --prefer-source
+
+script:
+  - phpunit --coverage-clover=coverage.clover
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+after_failure:
+  - cat /tmp/mltest_error.log
+  - cat /tmp/mltest_access.log
